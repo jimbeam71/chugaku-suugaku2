@@ -402,7 +402,11 @@ const PARTS = [
   }
 ];
 
-const out = '// 自動生成（node gen2.js）。手で直すときは gen2.js を直す。\nconst PARTS = ' + JSON.stringify(PARTS) + ';\nif (typeof module !== \'undefined\') module.exports = PARTS;\n';
+
+/* ふりがな（ルビ）をつける：全部の文字列に */
+const ruby = o => typeof o === 'string' ? o.replace(/累乗/g, '<ruby>累乗<rt>るいじょう</rt></ruby>').replace(/解(?=[はがをにのと、。<」）＝ ]|$)/g, '<ruby>解<rt>かい</rt></ruby>')
+  : Array.isArray(o) ? o.map(ruby) : (o && typeof o === 'object') ? Object.fromEntries(Object.entries(o).map(([k, v]) => [k, (k === 'expr' || k === 'id') ? v : ruby(v)])) : o;
+const out = '// 自動生成（node gen2.js）。手で直すときは gen2.js を直す。\nconst PARTS = ' + JSON.stringify(ruby(PARTS)) + ';\nif (typeof module !== \'undefined\') module.exports = PARTS;\n';
 fs.writeFileSync(path.join(__dirname, 'src/data.js'), out);
 let n = 0; PARTS.forEach(P => P.steps.forEach(s => { n += s.qs.length; }));
 console.log('src/data.js を作成：' + n + '問、' + (out.length / 1024).toFixed(0) + 'KB');

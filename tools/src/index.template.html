@@ -69,6 +69,7 @@ header { padding-top: 4px; }
 .tab[aria-pressed="true"] { border-color: var(--ink); box-shadow: 0 0 0 2px var(--ink) inset; }
 
 .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+ruby rt { font-size: .55em; font-weight: 500; letter-spacing: 0; }
 .mark { background: linear-gradient(transparent 58%, var(--hl) 58%); }
 .btn {
   font: inherit; font-family: var(--font-head); font-weight: 700; cursor: pointer; border: 0; border-radius: 12px;
@@ -255,7 +256,7 @@ footer { color: var(--muted); font-size: .82rem; text-align: center; }
     }).join('');
     return '<nav class="topnav" aria-label="サイト内の移動"><a href="https://chugaku.senta1111.workers.dev/">← 中学トップ</a><a class="navbtn" href="https://chugaku.senta1111.workers.dev/suugaku.html">数学トップ</a></nav>' +
       '<header><p class="kicker">レベル2</p><h1>やりなおし数学</h1>' +
-      '<p class="lead">負の数のかけ算・わり算、累乗、計算の順序、文字式の入り口まで。ここを越えると、中学数学が見えてくる。</p></header>' +
+      '<p class="lead">負の数のかけ算・わり算、<ruby>累乗<rt>るいじょう</rt></ruby>、計算の順序、文字式の入り口まで。ここを越えると、中学数学が見えてくる。</p></header>' +
       '<nav class="tabs" aria-label="パート">' + tabs + '</nav>';
   }
 
